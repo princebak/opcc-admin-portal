@@ -1,0 +1,366 @@
+<!doctype html>
+<html class="fixed"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title th:text="#{clients.title1}">Clients</title>
+    <meta name="keywords" content="HTML5 Admin Template"/>
+    <meta name="description" content="Admin SGC Portal">
+    <meta name="author" content="sgc">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="img/sgcLogo.png">
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,600,700,800,900" rel="stylesheet"
+          type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="vendor/animate/animate.compat.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/all.min.css"/>
+    <link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css"/>
+    <link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css"/>
+    <link rel="stylesheet" href="vendor/datatables/media/css/dataTables.bootstrap4.css"/>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="css/theme.css"/>
+
+    <!-- Theme Layout -->
+    <link rel="stylesheet" href="css/layouts/modern.css"/>
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="css/skins/default.css"/>
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Head Libs -->
+    <script src="vendor/modernizr/modernizr.js"></script>
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <header class="header">
+        <div class="logo-container">
+            <a href="#" class="logo">
+                <img src="img/sgcLogo.png" width="75" height="35" alt="SGC Admin" style="height:130%;width:130%;object-fit: cover;"/>
+            </a>
+
+            <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
+                 data-fire-event="sidebar-left-opened">
+                <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+            </div>
+        </div>
+
+        <!-- start: search & user box -->
+        <div class="header-right">
+            <div class="userbox">
+                <span id="lang" th:text="#{lang}"></span>:
+                <select id="locales">
+                    <option id="en" value="en" th:text="#{lang.eng}"></option>
+                    <option id="fr" value="fr" th:text="#{lang.fr}"></option>
+                </select>
+            </div>
+            <span class="separator"></span>
+
+            <div id="userbox" class="userbox">
+                <a href="#" data-toggle="dropdown">
+                    <figure class="profile-picture">
+                        <img src="img/profile.jpg" alt="Joseph Doe" class="rounded-circle"
+                             data-lock-picture="img/profile.jpg"/>
+                    </figure>
+                    <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                        <span class="name">John Doe Junior</span>
+                        <span class="role">Administrator</span>
+                    </div>
+
+                    <i class="fa custom-caret"></i>
+                </a>
+
+                <div class="dropdown-menu">
+                    <ul class="list-unstyled mb-2">
+                        <li class="divider"></li>
+                        <li>
+                            <a role="menuitem" tabindex="-1" href="/admin-profile"><i
+                                    class="bx bx-user-circle"></i><span th:text="#{user.profile}">My Profile</span></a>
+                        </li>
+
+                        <li>
+                            <a role="menuitem" tabindex="-1" href="/logout"><i class="bx bx-power-off"></i>
+                                <span th:text="#{nav.logout}">Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end: search & user box -->
+    </header>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        <aside id="sidebar-left" class="sidebar-left">
+            <div class="sidebar-header">
+                <div class="sidebar-title" th:text="#{nav.title}">
+                    Navigation
+                </div>
+                <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed"
+                     data-target="html" data-fire-event="sidebar-left-toggle">
+                    <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                </div>
+            </div>
+            <div class="nano">
+                <div class="nano-content">
+                    <nav id="menu" class="nav-main" role="navigation">
+                        <ul class="nav nav-main">
+                            <li>
+                                <a class="nav-link" href="/index">
+                                    <i class="bx bx-home-alt" aria-hidden="true"></i>
+                                    <span th:text="#{nav.dashboard}">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-parent nav-expanded nav-active">
+                                <a class="nav-link" href="#">
+                                    <i class="bx bx-clinic" aria-hidden="true"></i>
+                                    <span th:text="#{nav.client.manager}">Client Manager</span>
+                                </a>
+                                <ul class="nav nav-children nav-active">
+                                    <li class="nav-active">
+                                        <a class="nav-link" href="/clients"  th:text="#{nav.client.list}">
+                                            List Clients
+                                        </a>
+                                    </li>
+                                    <li>
+                                         <a class="nav-link" th:href="@{/create-client}" th:text="#{nav.client.create}">
+                                            Create Client
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-parent">
+                                <a class="nav-link" href="#">
+                                    <i class="bx bx-dollar" aria-hidden="true"></i>
+                                    <span th:text="#{nav.donation.manager}">Donation Manager</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="nav-active">
+                                        <a class="nav-link" href="/donations" th:text="#{nav.donation.list}">
+                                            List Donations
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="/logout">
+                                    <i class="bx bx-log-out" aria-hidden="true"></i>
+                                    <span th:text="#{nav.logout}">Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <script>
+                    // Maintain Scroll Position
+                    if (typeof localStorage !== 'undefined') {
+                        if (localStorage.getItem('sidebar-left-position') !== null) {
+                            var initialPosition = localStorage.getItem('sidebar-left-position'),
+                                sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+                            sidebarLeft.scrollTop = initialPosition;
+                        }
+                    }
+                </script>
+            </div>
+        </aside>
+        <!-- end: sidebar -->
+
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2 th:text="#{clients.title1}">Clients</h2>
+                <div class="right-wrapper">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="/index">
+                                <i class="bx bx-home-alt"></i>
+                            </a>
+                        </li>
+                        <li><span th:text="#{clients.title2}">Clients</span></li>
+                    </ol>
+                </div>
+            </header>
+            <!-- start: page -->
+            <div class="row">
+                <div class="col">
+
+                    <div class="card card-modern">
+                        <div class="card-body">
+                            <div class="datatables-header-footer-wrapper">
+                                <div class="datatable-header">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                            <a th:href="@{/create-client}"
+                                               class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4" th:text="#{client.add}">+ Add
+                                                Client</a>
+                                        </div>
+
+                                        <div class="col-8 col-lg-auto ml-auto mb-3 mb-lg-0">
+                                            <div class="d-none align-items-lg-center flex-column flex-lg-row">
+                                                <label class="ws-nowrap mr-3 mb-0">Filter By:</label>
+                                                <select class="form-control select-style-1 filter-by" name="filter-by">
+                                                    <option value="all" selected>All</option>
+                                                    <option value="1">Institute Name</option>
+                                                    <option value="2">Institute Type</option>
+                                                    <option value="3">Responsible</option>
+                                                    <option value="4">Email</option>
+                                                    <option value="5">Phone</option>
+                                                    <option value="6">Status</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-lg-auto pl-lg-1 mb-3 mb-lg-0">
+                                            <div class="d-flex align-items-lg-center flex-column flex-lg-row">
+                                                <label class="ws-nowrap mr-3 mb-0" th:text="#{gen.show}">Show:</label>
+                                                <select class="form-control select-style-1 results-per-page"
+                                                        name="results-per-page">
+                                                    <option value="12" selected>12</option>
+                                                    <option value="24">24</option>
+                                                    <option value="36">36</option>
+                                                    <option value="100">100</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-auto pl-lg-1">
+                                            <div class="search search-style-1 search-style-1-lg mx-lg-auto">
+                                                <div class="input-group">
+                                                    <input type="text" class="search-term form-control"
+                                                           name="search-term" id="search-term"
+                                                           th:placeholder="#{gen.search}">
+                                                    <span class="input-group-append">
+																<button class="btn btn-default" type="submit"><i
+                                                                        class="bx bx-search"></i></button>
+															</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table th:unless="${#lists.isEmpty(clients)}" class="table table-ecommerce-simple table-striped mb-0"
+                                       id="datatable-ecommerce-list" style="min-width: 640px;">
+
+                                    <thead>
+                                        <tr>
+                                            <th width="24%" th:text="#{client.inst-name}">Institute Name</th>
+                                            <th width="15%" th:text="#{client.inst-type}">Institute Type</th>
+                                            <th width="20%" th:text="#{client.responsible}">Responsible</th>
+                                            <th width="20%" th:text="#{client.email}">E-mail</th>
+                                            <th width="12%" th:text="#{client.phone}">Phone</th>
+                                            <th width="9%" th:text="#{client.status}">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a><strong >Institute One</strong></a></td>
+                                            <td>Clinic></td>
+                                            <td>555-123-4567</td>
+                                            <td>okler@domain.com</td>
+                                            <td>Phone</td>
+                                            <td>Status</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <hr class="solid mt-5 opacity-4">
+                                <div class="datatable-footer">
+                                    <div class="row align-items-center justify-content-between mt-3">
+                                        <div class="col-md-auto order-1 mb-3 mb-lg-0">
+                                            <div class="d-flex align-items-stretch">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-auto text-center order-3 order-lg-2">
+                                            <div class="results-info-wrapper"></div>
+                                        </div>
+                                        <div class="col-lg-auto order-2 order-lg-3 mb-3 mb-lg-0">
+                                            <div class="pagination-wrapper"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end: page -->
+            </div>
+            <!-- end: page -->
+        </section>
+    </div>
+</section>
+
+<!-- Vendor -->
+<script src="vendor/jquery/jquery.js"></script>
+<script src="vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+<script src="vendor/popper/umd/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.js"></script>
+<script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="vendor/common/common.js"></script>
+<script src="vendor/nanoscroller/nanoscroller.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
+<script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+<!-- Specific Page Vendor -->
+<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Theme Base, Components and Settings -->
+<script src="js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="js/examples/examples.header.menu.js"></script>
+<script src="js/examples/examples.ecommerce.datatables.list.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        if($("#lang").text() == "Language"){
+            $("#en").attr("selected","true");
+        }else if($("#lang").text() == "Langue"){
+            $("#fr").attr("selected","true");
+        }
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != ''){
+                var location = window.location+"";
+                if( location.includes('#') ){
+                    location = location.replace('#','');
+                }
+                if(location.includes('lang=fr')){
+                    window.location.replace(location.replace('lang=fr','lang=' + selectedOption));
+                }else if(location.includes('lang=en')){
+                    window.location.replace(location.replace('lang=en','lang=' + selectedOption));
+                }else if(location.includes('?') && !location.includes('lang=fr') && !location.includes('lang=en')){
+                    window.location.replace(location+'&lang=' + selectedOption);
+                }else{
+                    window.location.replace(location+'?lang=' + selectedOption);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html class="fixed"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="UTF-8">
+
+		<title th:text="#{profile.title1}">Admin Profile</title>
+		<meta name="keywords" content="SGC ADMIN" />
+		<meta name="description" content="Admin SGC Portal">
+		<meta name="author" content="sgc">
+		<link rel="icon" type="image/png" href="img/sgcLogo.png">
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<!-- Web Fonts  -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="vendor/animate/animate.compat.css">
+		<link rel="stylesheet" href="vendor/font-awesome/css/all.min.css" />
+		<link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css" />
+		<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" />
+		<link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="css/theme.css" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="css/skins/default.css" />
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Head Libs -->
+		<script src="vendor/modernizr/modernizr.js"></script>
+
+	</head>
+	<body>
+		<section class="body">
+
+			<!-- start: header -->
+			<header class="header">
+				<div class="logo-container">
+					<a href="#" class="logo">
+						<img src="img/sgcLogo.png" width="75" height="35" alt="SGC Admin" style="height:130%;width:130%;object-fit: cover;" />
+					</a>
+
+					<div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+						<i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+					</div>
+
+				</div>
+
+				<!-- start: search & user box -->
+				<div class="header-right">
+					<div class="userbox">
+						<span id="lang" th:text="#{lang}"></span>:
+						<select id="locales">
+							<option id="en" value="en" th:text="#{lang.eng}"></option>
+							<option id="fr" value="fr" th:text="#{lang.fr}"></option>
+						</select>
+					</div>
+					<span class="separator"></span>
+
+					<div id="userbox" class="userbox">
+						<a href="#" data-toggle="dropdown">
+							<figure class="profile-picture">
+								<img src="img/profile.jpg" alt="Admin profile" class="rounded-circle" data-lock-picture="img/profile.jpg"/>
+							</figure>
+							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+								<span class="name">John Doe Junior</span>
+								<span class="role">Administrator</span>
+							</div>
+
+							<i class="fa custom-caret"></i>
+						</a>
+
+						<div class="dropdown-menu">
+							<ul class="list-unstyled mb-2">
+								<li class="divider"></li>
+								<li>
+									<a role="menuitem" tabindex="-1" href="/admin-profile"><i
+											class="bx bx-user-circle"></i><span th:text="#{user.profile}">My Profile</span></a>
+								</li>
+
+								<li>
+									<a role="menuitem" tabindex="-1" href="/logout"><i class="bx bx-power-off"></i>
+										<span th:text="#{nav.logout}">Logout</span></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end: search & user box -->
+			</header>
+			<!-- end: header -->
+
+			<div class="inner-wrapper">
+				<!-- start: sidebar -->
+				<aside id="sidebar-left" class="sidebar-left">
+
+					<div class="sidebar-header">
+						<div class="sidebar-title">
+							Navigation
+						</div>
+						<div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+							<i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+						</div>
+					</div>
+
+					<div class="nano">
+						<div class="nano-content">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-main">
+									<li>
+										<a class="nav-link" href="/index">
+											<i class="bx bx-home-alt" aria-hidden="true"></i>
+											<span th:text="#{nav.dashboard}">Dashboard</span>
+										</a>
+									</li>
+									<li class="nav-parent">
+										<a class="nav-link" href="#">
+											<i class="bx bx-clinic" aria-hidden="true"></i>
+											<span th:text="#{nav.client.manager}">Client Manager</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a class="nav-link" href="/clients"  th:text="#{nav.client.list}">
+													List Clients
+												</a>
+											</li>
+											<li>
+												<a class="nav-link" th:href="@{/create-client}" th:text="#{nav.client.create}">
+													Create Client
+												</a>
+											</li>
+										</ul>
+									</li>
+
+									<li class="nav-parent">
+										<a class="nav-link" href="#">
+											<i class="bx bx-dollar" aria-hidden="true"></i>
+											<span th:text="#{nav.donation.manager}">Donation Manager</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a class="nav-link" href="/donations" th:text="#{nav.donation.list}">
+													List Donations
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a class="nav-link" href="/logout">
+											<i class="bx bx-log-out" aria-hidden="true"></i>
+											<span th:text="#{nav.logout}">Logout</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+						<script>
+							// Maintain Scroll Position
+							if (typeof localStorage !== 'undefined') {
+								if (localStorage.getItem('sidebar-left-position') !== null) {
+									var initialPosition = localStorage.getItem('sidebar-left-position'),
+											sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+									sidebarLeft.scrollTop = initialPosition;
+								}
+							}
+						</script>
+
+					</div>
+
+				</aside>
+				<!-- end: sidebar -->
+
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2 th:text="#{profile.title1}">Profile</h2>
+						<div class="right-wrapper">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="/index">
+										<i class="bx bx-home-alt"></i>
+									</a>
+								</li>
+								<li><span th:text="#{profile.title2}">Profile</span></li>
+							</ol>
+						</div>
+					</header>
+
+					<!-- start: page -->
+					<div class="row">
+						<div class="col-lg-4 col-xl-3 mb-4 mb-xl-0">
+							<section class="card">
+								<div class="card-body">
+									<div class="thumb-info mb-3">
+										<img src="img/profile.jpg" class="rounded img-fluid" alt="Admin Profile">
+										<div class="thumb-info-title">
+											<span class="thumb-info-inner">John Doe</span>
+											<span class="thumb-info-type">Admin</span>
+										</div>
+									</div>
+									<hr class="dotted short">
+									<h5 class="mb-2 mt-3" th:text="#{profile.img.about}">About</h5>
+									<p class="text-2" th:text="#{profile.img-details}">My aim is the perfection, adn more about me ...</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-8 col-xl-6">
+
+							<div class="tabs">
+								<ul class="nav nav-tabs tabs-primary">
+									<li class="nav-item active">
+										<a class="nav-link" href="#edit" data-toggle="tab" th:text="#{profile.details.tab}">Details</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div id="edit" class="tab-pane active">
+
+										<form class="p-3" action="#" id="resetpw_frm" method="post">
+<!--											<input type="hidden" th:value="${session.profileReset.isdisabled}" id="isdisabled">-->
+											<h4 class="mb-3" th:text="#{profile.details.perso-info.title}">Personal Information</h4>
+											<div class="row">
+												<div class="col-md-6  mb-2">
+													<label for="first" th:text="#{profile.details.fname}">Name</label>
+													<input type="text" class="form-control" id="first" placeholder="1234 Main St" disabled>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6  mb-2">
+													<label for="email" th:text="#{profile.details.email}">Email</label>
+													<input type="text" class="form-control" id="email" placeholder="1234 Main St" disabled>
+												</div>
+												<div class="col-md-6  mb-2">
+													<label for="phone" th:text="#{profile.details.phone}">Phone</label>
+													<input type="text" class="form-control" id="phone" placeholder="Apartment, studio, or floor" disabled>
+												</div>
+											</div>
+
+											<hr class="dotted tall">
+
+											<h4 class="mb-3" th:text="#{profile.details.change-passw.title}">Change Password</h4>
+											<input type="hidden" placeholder="enter your mail" name="email">
+
+											<div class="row">
+												<div class="col-md-6  mb-2">
+													<label for="code" th:text="#{profile.details.reset-code}">Reset Code</label>
+													<input type="text" class="form-control" id="code" th:placeholder="#{profile.details.reset-code-place-holder}">
+												</div>
+												<div class="col-md-6  mb-2">
+													<label for="pw" th:text="#{profile.details.npassword}">New Password</label>
+													<input type="password" class="form-control" id="pw" th:placeholder="#{profile.details.npassword-place-holder}">
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="form-group col-md-6 border-top-0 pt-0">
+													<label for="pwc" th:text="#{profile.details.cpassword}">Confirm Password</label>
+													<input type="password" class="form-control" id="pwc" th:placeholder="#{profile.details.cpassword-place-holder}">
+												</div>
+											</div>
+
+											<div class="form-row">
+												<div class="col-md-12 text-right mt-3">
+													<input type="button" id="reset_btn" class="btn btn-primary" th:value="#{btn_validate}">
+												</div>
+											</div>
+
+										</form>
+										<script>
+											var reset_btn =  document.getElementById("reset_btn");
+											var code_txt =  document.getElementById("code");
+											var pw_txt =  document.getElementById("pw");
+											var pwc_txt =  document.getElementById("pwc");
+											var resetpw_frm =  document.getElementById("resetpw_frm");
+
+											var isdisabled = document.getElementById("isdisabled");
+											console.log("isdisabled.value = "+isdisabled.value);
+
+											if(isdisabled.value === "true"){
+												code_txt.disabled = true;
+												pw_txt.disabled = true;
+												pwc_txt.disabled = true;
+											}else if(isdisabled.value === "false"){
+												code_txt.disabled = false;
+												pw_txt.disabled = false;
+												pwc_txt.disabled = false;
+												code_txt.value="";
+												code_txt.focus();
+											}
+
+
+											reset_btn.onclick = function (e) {
+												e.preventDefault();
+												if(reset_btn.value === "Get Reset Code" || reset_btn.value === "Obtenir le code de réinitialisation"){
+													resetpw_frm.action = "profile/reset";
+													resetpw_frm.submit();
+
+												}else if(reset_btn.value === "Update Credentials" || reset_btn.value === "Mettre à jour les info. d'identification"){
+													resetpw_frm.action = "profile/reset-confirm";
+													resetpw_frm.submit();
+
+												}
+											}
+										</script>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3">
+
+							<h4 class="mb-3 mt-0" th:text="#{profile.general-stat.title}">General Statistics</h4>
+							<ul class="simple-card-list mb-3">
+								<li class="primary">
+									<h3>16</h3>
+									<p class="text-light" th:text="#{profile.general-stat.tot-don-amount}">Total Donations Amount</p>
+								</li>
+								<li class="primary">
+									<h3>16</h3>
+									<p class="text-light" th:text="#{profile.general-stat.tot-don}">Donations Total</p>
+								</li>
+								<li class="primary">
+									<h3>488</h3>
+									<p class="text-light" th:text="#{profile.general-stat.tot-med-inst}">Medical Institutes Total</p>
+								</li>
+							</ul>
+
+							<h4 class="mb-3 mt-4 pt-2" th:text="#{profile.cases-stat.title}">Cases Statistics</h4>
+							<ul class="simple-bullet-list mb-3">
+								<li class="blue">
+									<span><b class="title" th:text="${closedCasesTotal}">Opened</b><b th:text="#{profile.cases-stat.closed-case}"></b></span>
+									<span class="description truncate" th:text="#{profile.cases-stat.closed-case-details}">The Aimed amount has already been reached</span>
+								</li>
+								<li class="green">
+									<span><b class="title" th:text="${processingCasesTotal}">Opened</b><b th:text="#{profile.cases-stat.process-case}"></b></span>
+									<span class="description truncate" th:text="#{profile.cases-stat.process-case-details}">The Aimed amount has not already been reached</span>
+								</li>
+								<li class="orange">
+									<span><b class="title" th:text="${openedCasesTotal}">Opened</b><b th:text="#{profile.cases-stat.opened-case}"></b></span>
+									<span class="description truncate" th:text="#{profile.cases-stat.opened-case-details}">No body has already donated</span>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+					<!-- end: page -->
+				</section>
+			</div>
+
+			<aside id="sidebar-right" class="sidebar-right">
+				<div class="nano">
+					<div class="nano-content">
+						<a href="#" class="mobile-close d-md-none">
+							Collapse <i class="fas fa-chevron-right"></i>
+						</a>
+
+						<div class="sidebar-right-wrapper">
+
+							<div class="sidebar-widget widget-calendar">
+								<h6>Upcoming Tasks</h6>
+								<div data-plugin-datepicker data-plugin-skin="dark"></div>
+
+								<ul>
+									<li>
+										<time datetime="2017-04-19T00:00+00:00">04/19/2017</time>
+										<span>Company Meeting</span>
+									</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</aside>
+		</section>
+
+		<!-- Vendor -->
+		<script src="vendor/jquery/jquery.js"></script>
+		<script src="vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+		<script src="vendor/popper/umd/popper.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="vendor/common/common.js"></script>
+		<script src="vendor/nanoscroller/nanoscroller.js"></script>
+		<script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
+		<script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+		<!-- Specific Page Vendor -->
+		<script src="vendor/autosize/autosize.js"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="js/theme.js"></script>
+
+		<!-- Theme Custom -->
+		<script src="js/custom.js"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="js/theme.init.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				if($("#lang").text() == "Language"){
+					$("#en").attr("selected","true");
+				}else if($("#lang").text() == "Langue"){
+					$("#fr").attr("selected","true");
+				}
+				$("#locales").change(function () {
+					var selectedOption = $('#locales').val();
+					if (selectedOption != ''){
+						var location = window.location+"";
+						if( location.includes('#') ){
+							location = location.replace('#','');
+						}
+						if(location.includes('lang=fr')){
+							window.location.replace(location.replace('lang=fr','lang=' + selectedOption));
+						}else if(location.includes('lang=en')){
+							window.location.replace(location.replace('lang=en','lang=' + selectedOption));
+						}else if(location.includes('?') && !location.includes('lang=fr') && !location.includes('lang=en')){
+							window.location.replace(location+'&lang=' + selectedOption);
+						}else{
+							window.location.replace(location+'?lang=' + selectedOption);
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

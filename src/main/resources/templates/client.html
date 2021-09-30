@@ -1,0 +1,412 @@
+<!doctype html>
+<html class="fixed"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title th:text="#{client-details.title1}">Client</title>
+    <meta name="keywords" content="HTML5 Admin Template"/>
+    <meta name="description" content="Admin SGC Portal">
+    <meta name="author" content="sgc">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="img/sgcLogo.png">
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,600,700,800,900" rel="stylesheet"
+          type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="vendor/animate/animate.compat.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/all.min.css"/>
+    <link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css"/>
+    <link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css"/>
+    <link rel="stylesheet" href="vendor/select2/css/select2.css"/>
+    <link rel="stylesheet" href="vendor/select2-bootstrap-theme/select2-bootstrap.min.css"/>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="css/theme.css"/>
+
+    <!-- Theme Layout -->
+    <link rel="stylesheet" href="css/layouts/modern.css"/>
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="css/skins/default.css"/>
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Head Libs -->
+    <script src="vendor/modernizr/modernizr.js"></script>
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <header class="header">
+        <div class="logo-container">
+            <a href="#" class="logo">
+                <img src="img/sgcLogo.png" width="75" height="35" alt="SGC Admin" style="height:130%;width:130%;object-fit: cover;"/>
+            </a>
+
+            <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
+                 data-fire-event="sidebar-left-opened">
+                <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+            </div>
+        </div>
+
+        <!-- start: search & user box -->
+        <div class="header-right">
+            <div class="userbox">
+                <span id="lang" th:text="#{lang}"></span>:
+                <select id="locales">
+                    <option id="en" value="en" th:text="#{lang.eng}"></option>
+                    <option id="fr" value="fr" th:text="#{lang.fr}"></option>
+                </select>
+            </div>
+            <span class="separator"></span>
+
+            <div id="userbox" class="userbox">
+                <a href="#" data-toggle="dropdown">
+                    <figure class="profile-picture">
+                        <img src="img/profile.jpg" alt="Joseph Doe" class="rounded-circle"
+                             data-lock-picture="img/profile.jpg"/>
+                    </figure>
+                    <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                        <span class="name">John Doe Junior</span>
+                        <span class="role">Administrator</span>
+                    </div>
+
+                    <i class="fa custom-caret"></i>
+                </a>
+
+                <div class="dropdown-menu">
+                    <ul class="list-unstyled mb-2">
+                        <li class="divider"></li>
+                        <li>
+                            <a role="menuitem" tabindex="-1" href="/admin-profile"><i
+                                    class="bx bx-user-circle"></i><span th:text="#{user.profile}">My Profile</span></a>
+                        </li>
+
+                        <li>
+                            <a role="menuitem" tabindex="-1" href="/logout"><i class="bx bx-power-off"></i>
+                                <span th:text="#{nav.logout}">Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end: search & user box -->
+    </header>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        <aside id="sidebar-left" class="sidebar-left">
+            <div class="sidebar-header">
+                <div class="sidebar-title" th:text="#{nav.title}">
+                    Navigation
+                </div>
+                <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed"
+                     data-target="html" data-fire-event="sidebar-left-toggle">
+                    <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                </div>
+            </div>
+            <div class="nano">
+                <div class="nano-content">
+                    <nav id="menu" class="nav-main" role="navigation">
+                        <ul class="nav nav-main">
+                            <li>
+                                <a class="nav-link" href="/index">
+                                    <i class="bx bx-home-alt" aria-hidden="true"></i>
+                                    <span th:text="#{nav.dashboard}">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-parent  nav-expanded nav-active">
+                                <a class="nav-link" href="#">
+                                    <i class="bx bx-clinic" aria-hidden="true"></i>
+                                    <span th:text="#{nav.client.manager}">Client Manager</span>
+                                </a>
+                                <ul class="nav nav-children nav-active">
+                                    <li class="nav-active">
+                                        <a class="nav-link" href="/clients"  th:text="#{nav.client.list}">
+                                            List Clients
+                                        </a>
+                                    </li>
+                                    <li class="nav-active">
+                                         <a class="nav-link" th:href="@{/create-client}" th:text="#{nav.client.create}">
+                                            Create Client
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-parent">
+                                <a class="nav-link" href="#">
+                                    <i class="bx bx-dollar" aria-hidden="true"></i>
+                                    <span th:text="#{nav.donation.manager}">Donation Manager</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li>
+                                        <a class="nav-link" href="/donations" th:text="#{nav.donation.list}">
+                                            List Donations
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="/logout">
+                                    <i class="bx bx-log-out" aria-hidden="true"></i>
+                                    <span th:text="#{nav.logout}">Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <script>
+                    // Maintain Scroll Position
+                    if (typeof localStorage !== 'undefined') {
+                        if (localStorage.getItem('sidebar-left-position') !== null) {
+                            var initialPosition = localStorage.getItem('sidebar-left-position'),
+                                sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+                            sidebarLeft.scrollTop = initialPosition;
+                        }
+                    }
+                </script>
+            </div>
+        </aside>
+        <!-- end: sidebar -->
+
+        <section role="main" class="content-body content-body-modern mt-0">
+            <header class="page-header">
+                <h2 th:text="#{client-details.title1}">Client Details</h2>
+                <div class="right-wrapper">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="/index">
+                                <i class="bx bx-home-alt"></i>
+                            </a>
+                        </li>
+                        <li><a href="/clients" th:text="#{client-details.title2}">Clients</a></li>
+                        <li><span th:text="#{client-details.title3}">Client</span></li>
+                    </ol>
+                </div>
+            </header>
+            <!-- start: page -->
+            <form class="order-details action-buttons-fixed" method="post">
+                <div class="row">
+                    <div class="col-xl-7 mb-4 mb-xl-0">
+
+                        <div class="card card-modern">
+                            <div class="card-header">
+                                <h2 class="card-title" th:text="#{client-details.title}">Client Detail</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-4">
+                                        <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.inst-name}">
+                                            Institute Name</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li>Institute One</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.inst-type}">
+                                            Institute Type:</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li>Institute Type</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.inst-descrip}">
+                                            Institute Description:</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li>Institute is the best in malaria treatment ...</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <h3 class="font-weight-bold text-color-dark text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.address}">
+                                            Address</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li>Street Number</li>
+                                            <li>firstLineAddress</li>
+                                            <li>secondLineAddress</li>
+                                            <li>town</li>
+                                            <li>postcode</li>
+                                            <li>country</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3" th:text="#{gen.created}">
+                                            Created:</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li>2021/01/01</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-4">
+                                        <h3 class="font-weight-bold text-color-dark text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.bank-account}">
+                                            Bank Account</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li>Bank of DRC</li>
+                                            <li>42448899884422</li>
+                                            <li>codeSwift</li>
+                                            <li>country</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-5">
+
+                        <div class="card card-modern">
+                            <div class="card-header">
+                                <h2 class="card-title" th:text="#{client-details.responsible}">Responsible</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.responsible-name}">
+                                            Responsible Name</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li>Prince Bakenga</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.email}">
+                                            Email address:</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li><a href="mailto:prince.ilunga@icbs.tech">prince.ilunga@icbs.tech</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3" th:text="#{client-details.phone}">
+                                            Phone:</h3>
+                                        <ul class="list list-unstyled list-item-bottom-space-0">
+                                            <li><a href="tel:+243824477966" class="text-color-dark">+243824477966</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-modern" style="height: 518px;">
+                            <div class="card-header">
+                                <h2 class="card-title" th:text="#{cases.title1}">Cases</h2>
+                            </div>
+                            <div class="card-body" style="overflow: auto;">
+                                <div class="table-responsive">
+                                    <table class="table table-ecommerce-simple table-ecommerce-simple-border-bottom table-striped mb-0"
+                                           style="min-width: 380px;">
+                                        <thead>
+                                        <tr>
+                                            <th width="23%" th:text="#{case.title}">Title</th>
+                                            <th width="13%" th:text="#{case.category}">Category</th>
+                                            <th width="30%" th:text="#{gen.description}">Description</th>
+                                            <th width="12%" th:text="#{case.raised-amount}">Raised Amount</th>
+                                            <th width="12%" th:text="#{case.aimed-amount}">Aimed Amount</th>
+                                            <th width="10%" th:text="#{gen.status}">Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><a><strong>191</strong></a></td>
+                                            <td>Customer Name Example</td>
+                                            <td></td>
+                                            <td>$200</td>
+                                            <td></td>
+
+                                            <td>status</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row action-buttons">
+                    <div class="col-12 col-md-auto">
+                        <a type="submit" th:href="@{/create-client}"
+                                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1"
+                                data-loading-text="Loading...">
+                            <i class="bx bx-save text-4 mr-2"></i> <span th:text="#{client-details.edit-btn}">Edit Client</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <!-- end: page -->
+        </section>
+    </div>
+</section>
+
+<!-- Vendor -->
+<script src="vendor/jquery/jquery.js"></script>
+<script src="vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+<script src="vendor/popper/umd/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.js"></script>
+<script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="vendor/common/common.js"></script>
+<script src="vendor/nanoscroller/nanoscroller.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
+<script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+<!-- Specific Page Vendor -->
+<script src="vendor/select2/js/select2.js"></script>
+
+<!-- Theme Base, Components and Settings -->
+<script src="js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="js/examples/examples.header.menu.js"></script>
+<script src="js/examples/examples.ecommerce.orders.detail.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        if($("#lang").text() == "Language"){
+            $("#en").attr("selected","true");
+        }else if($("#lang").text() == "Langue"){
+            $("#fr").attr("selected","true");
+        }
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != ''){
+                var location = window.location+"";
+                if( location.includes('#') ){
+                    location = location.replace('#','');
+                }
+                if(location.includes('lang=fr')){
+                    window.location.replace(location.replace('lang=fr','lang=' + selectedOption));
+                }else if(location.includes('lang=en')){
+                    window.location.replace(location.replace('lang=en','lang=' + selectedOption));
+                }else if(location.includes('?') && !location.includes('lang=fr') && !location.includes('lang=en')){
+                    window.location.replace(location+'&lang=' + selectedOption);
+                }else{
+                    window.location.replace(location+'?lang=' + selectedOption);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

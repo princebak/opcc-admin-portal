@@ -1,0 +1,13 @@
+/* Add here all your CSS customizations */
+
+.hand-pointer{
+    cursor: pointer;
+}
+
+.profile-img{
+    width: 300px;
+    height: 250px;
+    border-radius: 5%;
+    box-shadow: 0px 0px 10px #aaaaaa;
+    object-fit: cover;
+}
