@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{nav.dashboard}">Home</title>
+    <th:block layout:fragment="header_section">
+        <link rel="stylesheet" href="vendor/jquery-ui/jquery-ui.css"/>
+        <link rel="stylesheet" href="vendor/jquery-ui/jquery-ui.theme.css"/>
+        <link rel="stylesheet" href="vendor/bootstrap-multiselect/css/bootstrap-multiselect.css"/>
+        <link rel="stylesheet" href="vendor/morris/morris.css"/>
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="side_section">
+    <li class="nav-parent">
+        <a class="nav-link" href="#">
+            <i class="bx bx-clinic" aria-hidden="true"></i>
+            <span th:text="#{nav.client.manager}">Client Manager</span>
+        </a>
+        <ul class="nav nav-children">
+            <li>
+                <a class="nav-link" href="/clients" th:text="#{nav.client.list}">
+                    List Clients
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" th:href="@{/create-client}" th:text="#{nav.client.create}">
+                    Create Client
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-parent">
+        <a class="nav-link" href="#">
+            <i class="bx bx-dollar" aria-hidden="true"></i>
+            <span th:text="#{nav.donation.manager}">Donation Manager</span>
+        </a>
+        <ul class="nav nav-children">
+            <li>
+                <a class="nav-link" href="/donations" th:text="#{nav.donation.list}">
+                    List Donations
+                </a>
+            </li>
+        </ul>
+    </li>
+</th:block>
+<th:block layout:fragment="page_content">
+    <section role="main" class="content-body">
+        <header class="page-header">
+            <h2 th:text="#{nav.dashboard}">Dashboard</h2>
+            <div class="right-wrapper">
+                <ol class="breadcrumbs">
+                    <li>
+                        <a href="/index">
+                            <i class="bx bx-home-alt"></i>
+                        </a>
+                    </li>
+                    <li><span th:text="#{home.title}">Home</span></li>
+                </ol>
+            </div>
+        </header>
+
+        <!-- start: page -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row mb-3">
+                    <div class="col-xl-6">
+                        <section class="card card-featured-left card-featured-primary mb-3">
+                            <div class="card-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-primary">
+                                            <i class="fas fa-hospital-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title" th:text="#{home.med-inst}">Medical Institute(s)</h4>
+                                            <div class="info">
+                                                <strong class="amount">1281</strong>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase" th:href="@{/clients}" th:text="#{viewall}">view all</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-xl-6">
+                        <section class="card card-featured-left card-featured-secondary">
+                            <div class="card-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-secondary">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title" th:text="#{home.don-amount}">Donations Amount</h4>
+                                            <div class="info">
+                                                <strong class="amount">$ 14,890.30</strong>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase" href="#"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <section class="card card-featured-left card-featured-quaternary">
+                            <div class="card-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-quaternary">
+                                            <i class="fas fa-hand-holding-heart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title" th:text="#{home.donations}">Donations</h4>
+                                            <div class="info">
+                                                <strong class="amount">3765</strong>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase" th:href="@{/donations}" th:text="#{viewall}">view all</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-4 mt-1">
+            <div class="col-xl-12">
+                <section class="card">
+                    <header class="card-header card-header-transparent">
+                        <div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                        </div>
+
+                        <h2 class="card-title">7 <span th:text="#{home.last-don}">Last Donations</span></h2>
+                    </header>
+                    <div class="card-body">
+                        <table class="table table-responsive-md table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th width="30%" th:text="#{case.title}">Case Title</th>
+                                    <th width="20%" th:text="#{donation.amount}">Amount</th>
+                                    <th width="30%" th:text="#{donation.donator-name}">Donator Name</th>
+                                    <th width="20%" th:text="#{gen.created}">Created</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a><strong>title</strong></a></td>
+                                    <td>amount</td>
+                                    <td>donator name</td>
+                                    <td>created</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- end: page -->
+    </section>
+</th:block>
+<th:block layout:fragment="footer_section">
+    <!-- Specific Page Vendor -->
+    <script src="vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="vendor/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+    <script src="vendor/jquery-appear/jquery.appear.js"></script>
+    <script src="vendor/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+    <script src="vendor/jquery.easy-pie-chart/jquery.easypiechart.js"></script>
+    <script src="vendor/flot/jquery.flot.js"></script>
+    <script src="vendor/flot.tooltip/jquery.flot.tooltip.js"></script>
+    <script src="vendor/flot/jquery.flot.pie.js"></script>
+    <script src="vendor/flot/jquery.flot.categories.js"></script>
+    <script src="vendor/flot/jquery.flot.resize.js"></script>
+    <script src="vendor/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="vendor/raphael/raphael.js"></script>
+    <script src="vendor/morris/morris.js"></script>
+    <script src="vendor/gauge/gauge.js"></script>
+    <script src="vendor/snap.svg/snap.svg.js"></script>
+    <script src="vendor/liquid-meter/liquid.meter.js"></script>
+    <script src="vendor/jqvmap/jquery.vmap.js"></script>
+    <script src="vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
+    <script src="vendor/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>
+    <script src="vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>
+    <script src="vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>
+    <script src="vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
+    <script src="vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
+    <script src="vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+    <!-- Examples -->
+    <script src="js/examples/examples.dashboard.js"></script>
+</th:block>
+</body>
+</html>

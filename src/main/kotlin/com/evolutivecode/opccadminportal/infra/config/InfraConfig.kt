@@ -26,25 +26,25 @@ import org.springframework.web.client.RestTemplate
 @EnableRetry
 @Configuration
 class InfraConfig {
-    private final val timeout = 10000
+    private val timeout = 10000
 
     @Value("\${remote.maxTotalConnect}")
-    private final val maxTotalConnect: Int = 1
+    private val maxTotalConnect: Int = 1
 
     @Value("\${remote.maxConnectPerRoute}")
-    private final val maxConnectPerRoute: Int = 200
+    private val maxConnectPerRoute: Int = 200
 
     @Value("\${remote.connectTimeout}")
-    private final val connectTimeout: Int = 2000
+    private val connectTimeout: Int = 2000
 
     @Value("\${remote.readTimeout}")
-    private final val readTimeout: Int = 3000
+    private val readTimeout: Int = 3000
 
     @Value("\${spring.retry.backOffPolicy}")
-    private final val backOffPolicy: Long = 1000
+    private val backOffPolicy: Long = 1000
 
     @Value("\${spring.retry.maxAttempts}")
-    private final val maxAttempts: Int = 2
+    private val maxAttempts: Int = 2
 
     @Value("\${aws.access.key}")
     private val awsAccessKey: String? = null

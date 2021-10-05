@@ -5,14 +5,14 @@
 <head>
     <!-- Basic -->
     <meta charset="UTF-8">
-    <title>Default Layout | Porto Admin - Responsive HTML5 Template</title>
-    <meta name="keywords" content="HTML5 Admin Template"/>
-    <meta name="description" content="Admin SGC Portal">
-    <meta name="author" content="sgc">
+    <title th:text="${pageDetails.title}"></title>
+    <meta name="keywords" content="opcc admin"/>
+    <meta name="description" content="OPCC Admin">
+    <meta name="author" content="icash business solutions">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <link rel="icon" type="image/png" href="img/sgcLogo.png">
+    <link rel="icon" type="image/png" href="img/branding/logo.png">
     <!-- Web Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800|Shadows+Into+Light"
           rel="stylesheet" type="text/css">
@@ -27,9 +27,6 @@
 
     <!-- Create client -->
 <!--    <link th:if="${title eq 'create-client'}" rel="stylesheet" href="vendor/pnotify/pnotify.custom.css"/>-->
-    <th:block layout:fragment="header_section">
-
-    </th:block>
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="css/theme.css"/>
@@ -51,11 +48,10 @@
     <header class="header">
         <div class="logo-container">
             <a href="#" class="logo">
-                <img src="img/sgcLogo.png" width="75" height="35" alt="SGC Admin" style="height:130%;width:130%;object-fit: cover;"/>
+                <img src="img/branding/logo.png" class="logo"  alt="OPCC Admin"/>
             </a>
 
-            <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
-                 data-fire-event="sidebar-left-opened">
+            <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
             </div>
 
@@ -75,8 +71,7 @@
             <div id="userbox" class="userbox">
                 <a href="#" data-toggle="dropdown">
                     <figure class="profile-picture">
-                        <img src="img/profile.jpg" alt="Joseph Doe" class="rounded-circle"
-                             data-lock-picture="img/profile.jpg"/>
+                        <img src="img/profile.jpg" alt="Joseph Doe" class="rounded-circle" data-lock-picture="img/profile.jpg"/>
                     </figure>
                     <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                         <span class="name">John Doe Junior</span>
@@ -90,13 +85,17 @@
                     <ul class="list-unstyled mb-2">
                         <li class="divider"></li>
                         <li>
-                            <a role="menuitem" tabindex="-1" href="/admin-profile"><i
-                                    class="bx bx-user-circle"></i><span th:text="#{user.profile}">My Profile</span></a>
+                            <a role="menuitem" tabindex="-1" href="/admin-profile">
+                                <i class="bx bx-user-circle"></i>
+                                <span th:text="#{user.profile}">My Profile</span>
+                            </a>
                         </li>
 
                         <li>
-                            <a role="menuitem" tabindex="-1" href="/logout"><i class="bx bx-power-off"></i>
-                                <span th:text="#{nav.logout}">Logout</span></a>
+                            <a role="menuitem" tabindex="-1" href="/logout">
+                                <i class="bx bx-power-off"></i>
+                                <span th:text="#{nav.logout}">Logout</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -177,10 +176,6 @@
 <script src="vendor/nanoscroller/nanoscroller.js"></script>
 <script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
 <script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
-
-<!-- Create client -->
-<!--<script th:if="${title eq 'create-client'}" src="vendor/jquery-validation/jquery.validate.js"></script>-->
-<!--<script th:if="${title eq 'create-client'}" src="vendor/pnotify/pnotify.custom.js"></script>-->
 
 <th:block layout:fragment="footer_section">
 
