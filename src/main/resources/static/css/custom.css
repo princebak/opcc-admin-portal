@@ -11,3 +11,8 @@
     box-shadow: 0px 0px 10px #aaaaaa;
     object-fit: cover;
 }
+.logo{
+    width : 150px !important;
+    height: 35px !important;
+    object-fit: cover !important;
+}

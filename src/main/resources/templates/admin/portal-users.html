@@ -47,26 +47,28 @@
 
                             <thead>
                                 <tr>
-                                    <th width="24%">eInstitute Nam</th>
-                                    <th width="15%">Institute Type</th>
-                                    <th width="20%">Responsible</th>
-                                    <th width="20%">E-mail</th>
-                                    <th width="12%">Phone</th>
-                                    <th width="9%">Status</th>
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Secteur</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a><strong >Institute One</strong></a></td>
-                                    <td>Clinic></td>
-                                    <td>555-123-4567</td>
-                                    <td>okler@domain.com</td>
-                                    <td>Phone</td>
-                                    <td>Status</td>
+                            <tr th:if="${#lists.isEmpty(portalUsers.content)}">
+                                <td colspan="5" class="no-data">Nothing to show</td>
+                            </tr>
+                                <tr th:unless="${#lists.isEmpty(portalUsers.content)}" th:each="portalUser : ${portalUsers.content}">
+                                    <td>
+                                        <a>
+                                            <strong th:text="${portalUser.name}"></strong>
+                                        </a>
+                                    </td>
+                                    <td th:text="${portalUser.username}">username</td>
+                                    <td th:text="${portalUser.principalSector}">sector</td>
+                                    <td class="badge" th:classappend="${portalUser.status eq 'CREATED' ? 'warning' : portalUser.status eq 'CONFIRMED' ? 'success' : 'danger'}" th:text="${portalUser.status}">Status</td>
                                 </tr>
                             </tbody>
                         </table>
-
                         <hr class="solid mt-5 opacity-4">
                         <div class="datatable-footer">
                             <div class="row align-items-center justify-content-between mt-3">
@@ -83,7 +85,6 @@
                                 </div>
                             </div>
                         </div>
-                        </table>
                     </div>
                 </div>
 

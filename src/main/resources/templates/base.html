@@ -4,8 +4,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <!-- Basic -->
-    <meta charset="UTF-8">
     <title th:text="${pageDetails.title}"></title>
+    <meta charset="UTF-8">
     <meta name="keywords" content="opcc admin"/>
     <meta name="description" content="OPCC Admin">
     <meta name="author" content="icash business solutions">
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="vendor/boxicons/css/boxicons.min.css"/>
     <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css"/>
     <link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css"/>
+    <link th:if="${pageDetails.group eq 'tables'}" rel="stylesheet" href="vendor/datatables/media/css/dataTables.bootstrap4.css"/>
 
     <!-- Create client -->
 <!--    <link th:if="${title eq 'create-client'}" rel="stylesheet" href="vendor/pnotify/pnotify.custom.css"/>-->
@@ -71,7 +72,7 @@
             <div id="userbox" class="userbox">
                 <a href="#" data-toggle="dropdown">
                     <figure class="profile-picture">
-                        <img src="img/profile.jpg" alt="Joseph Doe" class="rounded-circle" data-lock-picture="img/profile.jpg"/>
+                        <img src="img/branding/logo.png" alt="Joseph Doe" class="rounded-circle" data-lock-picture="img/profile.jpg"/>
                     </figure>
                     <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                         <span class="name">John Doe Junior</span>
@@ -124,19 +125,48 @@
                 <div class="nano-content">
                     <nav id="menu" class="nav-main" role="navigation">
                         <ul class="nav nav-main">
-                            <li class="nav-active">
-                                <a class="nav-link" href="/index">
+                            <li th:classappend="${pageDetails.slug eq 'dashboard' ? 'nav-active' : ''}">
+                                <a class="nav-link" href="/dashboard">
                                     <i class="bx bx-home-alt" aria-hidden="true"></i>
-                                    <span th:text="#{nav.dashboard}">Dashboard</span>
+                                    <span>Tableau de bord</span>
                                 </a>
                             </li>
-                            <th:block layout:fragment="side_section">
-
-                            </th:block>
+                            <li th:classappend="${pageDetails.slug eq 'donations' ? 'nav-active' : ''}">
+                                <a class="nav-link" href="/donations">
+                                    <i class="bx bx-dollar" aria-hidden="true"></i>
+                                    <span>Donnations</span>
+                                </a>
+                            </li>
+                            <li th:classappend="${pageDetails.slug eq 'tenders' ? 'nav-active' : ''}">
+                                <a class="nav-link" href="/tenders">
+                                    <i class="bx bxs-offer" aria-hidden="true"></i>
+                                    <span>Les offres</span>
+                                </a>
+                            </li>
+                            <li th:classappend="${pageDetails.slug eq 'subscribers' ? 'nav-active' : ''}">
+                                <a class="nav-link" href="/subscribers">
+                                    <i class="bx bxs-user-circle" aria-hidden="true"></i>
+                                    <span>Liste des inscrits</span>
+                                </a>
+                            </li>
+                            <li class="nav-parent" th:classappend="${pageDetails.slug eq 'users' ? 'nav-active' : ''}">
+                                <a class="nav-link" href="#">
+                                    <i class="bx bx-customize" aria-hidden="true"></i>
+                                    <span>Administrateurs</span>
+                                </a>
+                                <ul class="nav-children">
+                                    <li th:classappend="${pageDetails.slug eq 'subscribers' ? 'nav-active' : ''}">
+                                        <a class="nav-link" href="/subscribers">
+                                            <i class="bx bxs-user-circle" aria-hidden="true"></i>
+                                            <span>Liste des inscrits</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li>
                                 <a class="nav-link" href="/logout">
                                     <i class="bx bx-log-out" aria-hidden="true"></i>
-                                    <span th:text="#{nav.logout}">Logout</span>
+                                    <span>Déconnexion</span>
                                 </a>
                             </li>
                         </ul>
@@ -159,9 +189,26 @@
 
         </aside>
         <!-- end: sidebar -->
-        <th:block layout:fragment="page_content">
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <div class="right-wrapper">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="/dashboard">
+                                <span>Tableau de bord</span>
+                            </a>
+                        </li>
+                        <li>
+                            <span th:text="${pageDetails.title}"></span>
+                        </li>
+                    </ol>
+                </div>
+            </header>
 
-        </th:block>
+            <th:block layout:fragment="page_content">
+
+            </th:block>
+        </section>
     </div>
 
 </section>
@@ -176,6 +223,16 @@
 <script src="vendor/nanoscroller/nanoscroller.js"></script>
 <script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
 <script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+<!-- Specific Page Vendor -->
+<script th:if="${pageDetails.group eq 'tables'}"  src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script th:if="${pageDetails.group eq 'tables'}"  src="vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+
+
+<!-- Examples -->
+<script th:if="${pageDetails.group eq 'tables'}"  src="js/examples/examples.header.menu.js"></script>
+<script th:if="${pageDetails.group eq 'tables'}"  src="js/examples/examples.ecommerce.datatables.list.js"></script>
+
 
 <th:block layout:fragment="footer_section">
 

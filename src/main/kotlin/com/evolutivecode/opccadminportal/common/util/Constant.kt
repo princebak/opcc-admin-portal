@@ -2,7 +2,20 @@ package com.evolutivecode.opccadminportal.common.util
 
 class Constant {
     companion object {
+        const val TENDERS: String = "tenders"
+        const val PORTAL_USERS: String = "portalUsers"
+        const val DONATIONS: String = "donations"
         const val PAGE_DETAILS : String = "pageDetails"
+        const val PAGE_TITLE_DASHBOARD : String = "Tableau de bord"
+        const val PAGE_SLUG_DASHBOARD : String = "dashboard"
+        const val PAGE_TITLE_DONATIONS : String = "Donations"
+        const val PAGE_SLUG_DONATIONS : String = "donations"
+        const val PAGE_TITLE_TENDERS : String = "Les offres"
+        const val PAGE_SLUG_TENDERS : String = "tenders"
+        const val PAGE_TITLE_SUBSCRIBERS : String = "Les Inscrits"
+        const val PAGE_SLUG_SUBSCRIBERS : String = "subscribers"
+        const val PAGE_TITLE_PROFILE : String = "Mon profile"
+        const val PAGE_SLUG_PROFILE : String = "my-profile"
         const val STATISTICS : String = "statistics"
         const val UPDATE_PASSWORD_FORM : String = "resetPwdForm"
         const val AUTH_PROFILE : String = "opcc"

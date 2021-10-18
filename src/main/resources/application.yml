@@ -46,23 +46,14 @@ service:
     info:
       url: https://utils.blthouse.tech/auth-ws/api/v1/users/info?token=%s
 
-  sgc:
-    donation-cases:
-      url: http://localhost:8081/api/v1/donation-cases
-    donators:
-      url: http://localhost:8081/api/v1/donators
-    donations:
-      url: http://localhost:8081/api/v1/donations
-    clients:
-      url: http://localhost:8081/api/v1/clients
-    admins:
-      url: http://localhost:8081/api/v1/admins
-
+  opcc:
+    admin:
+      url: http://localhost:8081/api/v1/admin
 
 #storage service
 aws:
   bucket:
-    name: sgc-resources
+    name: opcc-resources
     location:
       public : static
   access:

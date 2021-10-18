@@ -49,6 +49,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .antMatchers(
                 "/login",
                 "/dashboard",
+                "/portal-users",
                 "/forgot-password",
                 "/reset-password")
             .permitAll()

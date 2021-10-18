@@ -16,13 +16,15 @@ import java.util.ArrayList
 class CustomAuthenticationProvider(private val authenticationService : AuthenticationService) : AuthenticationProvider {
      override fun authenticate(authentication: Authentication?): Authentication {
          val token = authenticationService.authenticate(authentication)
+         val isAuthenticated = (token != null) && authenticationService.getUserInfo(token).type.equals("admin", true)
 
-         if(token != null){
+         if(isAuthenticated){
              val grantedAuths = ArrayList<GrantedAuthority>()
-             grantedAuths.add(SimpleGrantedAuthority("ROLE_USER"))
-             val principal: User? = User(token, token, grantedAuths)
+             grantedAuths.add(SimpleGrantedAuthority("ADMIN"))
+             val principal = User(token, token, grantedAuths)
              return UsernamePasswordAuthenticationToken(principal, token, grantedAuths)
-         }else{
+         }
+         else{
              throw LoginFailedException(Constant.LOGIN_FAILED)
          }
     }

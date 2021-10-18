@@ -1,12 +1,12 @@
 package com.evolutivecode.opccadminportal.application.handler
 
-import com.amazonaws.services.mq.model.BadRequestException
 import com.evolutivecode.opccadminportal.common.exception.InternalServerException
 import com.evolutivecode.opccadminportal.common.exception.InvalidMemberException
 import com.evolutivecode.opccadminportal.common.exception.InvalidSessionException
 import com.evolutivecode.opccadminportal.common.exception.LoginFailedException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.web.bind.ServletRequestBindingException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.servlet.ModelAndView
@@ -42,7 +42,7 @@ class GlobalExceptionHandler {
         return modelAndView
     }
 
-    @ExceptionHandler(BadRequestException::class)
+    @ExceptionHandler(ServletRequestBindingException::class)
     fun handleBadRequestException(request: HttpServletRequest) : ModelAndView{
         val modelAndView = ModelAndView()
         modelAndView.viewName = "redirect:/login"
